@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1040411290219",
+    "project_id": "ip-robo-rfid",
+    "storage_bucket": "ip-robo-rfid.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1040411290219:android:47348a9c1d88cc40d65f2e",
+        "android_client_info": {
+          "package_name": "com.example.push1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1040411290219-ouobckn9oon2s3pr6io1gf1qoah2rcbq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCciQnHJ1yjQnfajwx6xy6_BWxJAM-Z-y0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1040411290219-ouobckn9oon2s3pr6io1gf1qoah2rcbq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
