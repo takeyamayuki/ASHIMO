@@ -23,10 +23,6 @@ import java.util.Arrays;
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private static final String TAG = MyFirebaseMessagingService.class.getSimpleName();
     public static final String INTENT_FILTER = "MESSAGE_RECEIVED";
-    public ArrayList<String> list = new ArrayList<String>(Arrays.asList());
-
-    // 末尾に追加
-    list.add("すいか",0);
 
     @Override
     public void onNewToken(String token) {
@@ -115,3 +111,4 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
         notificationManager.notify(0 /* ID of notification */, notificationBuilder.build());
     }
+}
