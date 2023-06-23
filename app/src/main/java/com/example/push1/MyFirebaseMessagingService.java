@@ -9,16 +9,12 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
 import android.util.Log;
-import android.widget.Toast;
 
 import androidx.core.app.NotificationCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private static final String TAG = MyFirebaseMessagingService.class.getSimpleName();
@@ -38,7 +34,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
-        // ...
 
         // TODO(developer): Handle FCM messages here.
         // Not getting messages here? See why this may be: https://goo.gl/39bRNJ
@@ -59,18 +54,26 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
         // Check if message contains a notification payload.
         String messageBody = "";
+        String messageTitle = "";
         if (remoteMessage.getNotification() != null) {
             messageBody = remoteMessage.getNotification().getBody();
+            messageTitle = remoteMessage.getNotification().getTitle();
+
             Log.d(TAG, "Message Notification Body: " + messageBody);
-            Intent intent = new Intent(INTENT_FILTER);
-            intent.putExtra("message", messageBody);
-            LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
+            Log.d(TAG, "Message Notification Title: " + messageTitle);
         }
 
         // Also if you intend on generating your own notifications as a result of a received FCM
         // message, here is where that should be initiated. See sendNotification method below.
 
-        sendNotification(messageBody);
+        // Viewに送る
+        Intent intent = new Intent(INTENT_FILTER);
+        intent.putExtra("message", messageBody);
+        LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
+
+        // notificationに送る
+        sendNotification(messageTitle, messageBody);
+        Log.d(TAG, "messageTitle equals: "+ messageTitle);
     }
 
     /**
@@ -78,7 +81,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
      *
      * @param messageBody FCM message body received.
      */
-    private void sendNotification(String messageBody) {
+    private void sendNotification(String messageTitle, String messageBody) {
         Intent intent = new Intent(this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
